@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+      <style>
+                 body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #ffedcc;
+            padding-top: 70px;
+        }
+        .navbar{
+            background-color: #CB202D;
+        }
+
+        .navbar-brand{
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .nav-link{
+            color:#fff !important;
+        }
+        .nav-link:hover{
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+       header {
+            position: relative;
+            height: 70vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/images/pexels-elevate-1267320.jpg') no-repeat center center/cover;
+            filter: blur(0px); /* Increase the blur effect here */
+            z-index: -1; /* Ensure the background image stays behind the content */
+        }
+
+        header h1, header p, .cta {
+            z-index: 1; /* Bring text and button on top of the blurred image */
+        }
+
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            font-weight: bold; /* Make the heading bold */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add shadow for better visibility */
+        }
+
+        header p {
+            font-size: 1.5em;
+            margin: 10px 0;
+            font-weight: bold; /* Make the paragraph bold */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add shadow for better visibility */
+        }
+
+        .cta {
+            background: #CB202D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px 0px 20px 0px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .recbtn {
+            background: #CB202D;
+            color:white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .categories, .featured-recipes {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .category, .recipe {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            flex: 1 1 200px;
+            transition: transform 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        .category h2 {
+            font-size: 1.8em;
+        }
+        .category:hover {
+            transform: scale(1.05);
+            background: #f8f8f8;
+        }
+        .category i {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        /* Featured recipes styling */
+        .featured-recipes {
+            text-align: center;
+        }
+
+        .featured-recipes h2 {
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .recipe {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recipe img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .recipe h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+        }
+
+        .recipe p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .recipe:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+        }
+        
+        /* Modal Styling */
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            position: relative;
+            box-sizing: border-box; /* Ensures proper padding and width calculation */
+        }
+
+        .modal-content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .modal-content input {
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%; /* Set width to 100% to take full container width */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+        }
+
+        .modal-content input:focus {
+            outline: none;
+            border: 2px solid #CB202D;
+        }
+
+
+        .modal-content button {
+            background-color: #CB202D;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .modal-content button:hover {
+            background-color: #CB202D;
+        }
+        .recbtn:hover{
+            background-color: #CB202D;
+            color: white;
+            text-decoration: none;
+            border: 2px black;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #333;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        #sn:hover{
+            cursor: pointer;
+        }
+        .close:hover {
+            background-color: #CB202D;
+            color: white;
+        }
+        .ALTRA{
+            height: 200px;
+            width: 20px;
+        }
+      </style>
+    <script>
+      // Modal controls
+      function openModal(modalId) {
+          document.getElementById(modalId).style.display = 'flex';
+      }
+
+      function closeModal(modalId) {
+          document.getElementById(modalId).style.display = 'none';
+          if (modalId === 'loginModal') {
+          document.getElementById('loginUser').value = '';
+          document.getElementById('loginPass').value = '';
+          } else if (modalId === 'signupModal') {
+          document.getElementById('signupUser').value = '';
+          document.getElementById('signupEmail').value = '';
+          document.getElementById('signupPass').value = '';
+          document.getElementById('signupConfirmPass').value = '';
+      }
+      }
+
+      // Signup logic with Local Storage
+      function signup() {
+          let username = document.getElementById('signupUser').value;
+          let email = document.getElementById('signupEmail').value;
+          let password = document.getElementById('signupPass').value;
+          let confirmPassword = document.getElementById('signupConfirmPass').value;
+
+          if (password !== confirmPassword) {
+              alert("Passwords do not match!");
+              return;
+          }
+
+          if (username && email && password) {
+              let userData = {
+                  username: username,
+                  email: email,
+                  password: password
+              };
+              localStorage.setItem('userData', JSON.stringify(userData));
+              alert('Signup successful! Please log in.');
+              closeModal('signupModal');
+              openModal('loginModal');
+          } else {
+              alert('Please fill in all fields.');
+          }
+      }
+
+      function login() {
+          let username = document.getElementById('loginUser').value;
+          let password = document.getElementById('loginPass').value;
+
+          let storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+          if (storedUserData && username === storedUserData.username && password === storedUserData.password) {
+              window.location.href = 'menu.html';
+              closeModal('loginModal');
+          } else {
+              alert('Incorrect username or password!');
+          }
+      }
+      
+      </script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+        AOS.init({
+          offset:100,
+          duration:800,
+        });
+      </script>
+      <script>
+        // Modal controls
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            if (modalId === 'loginModal') {
+            document.getElementById('loginUser').value = '';
+            document.getElementById('loginPass').value = '';
+            } else if (modalId === 'signupModal') {
+            document.getElementById('signupUser').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPass').value = '';
+            document.getElementById('signupConfirmPass').value = '';
+        }
+        }
+
+        // Signup logic with Local Storage
+        function signup() {
+            let username = document.getElementById('signupUser').value;
+            let email = document.getElementById('signupEmail').value;
+            let password = document.getElementById('signupPass').value;
+            let confirmPassword = document.getElementById('signupConfirmPass').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (username && email && password) {
+                let userData = {
+                    username: username,
+                    email: email,
+                    password: password
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                alert('Signup successful! Please log in.');
+                closeModal('signupModal');
+                openModal('loginModal');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function login() {
+            let username = document.getElementById('loginUser').value;
+            let password = document.getElementById('loginPass').value;
+
+            let storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+            if (storedUserData && username === storedUserData.username && password === storedUserData.password) {
+                window.location.href = 'menu.html';
+                closeModal('loginModal');
+            } else {
+                alert('Incorrect username or password!');
+            }
+        }
+        
+    </script>
+    <title>React App</title>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

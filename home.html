@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef's Collection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome for social media icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <script src="https://kit.fontawesome.com/8e36f69ff4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+     <!-- Navbar Section -->
+     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <header>
+        <h1>Culinary Chronicles</h1>
+        <p>Flavours to Inspire, Recipes to Create</p>
+        <button class="cta" onclick="openModal('loginModal')">Explore Recipes</button>
+    </header>
+
+    <section class="categories">
+        <div class="category">
+            <i>🥗</i>
+            <h2>Appetizer</h2>
+            <p> Light and flavorful dish to begin</p>
+        </div>
+        <div class="category">
+            <i>🍽️</i>
+            <h2>Main Course</h2>
+            <p>Hearty dish featuring protein and sides.</p>
+        </div>
+        <div class="category">
+            <i>🍰</i>
+            <h2>Desserts</h2>
+            <p>Sweet treats to satisfy your cravings.</p>
+        </div>
+    </section>
+
+    <section class="featured-recipes">
+        <h2>Featured Recipes</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="recipe" data-aos="zoom-in">
+                        <img src="images/buttr chicken.jpg" alt="Butter Chicken">
+                        <h3>Butter Chicken</h3>
+                        <p>Rich and creamy Indian chicken curry with flavorful spices.</p>
+                        <a class="recbtn" onclick="openModal('recipeModal1')">View Recipe</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="recipe" data-aos="zoom-in">
+                        <img src="images/tacos.jpg" alt="Tacos">
+                        <h3>Tacos</h3>
+                        <p>Traditional Mexican dish with a variety of fillings.</p>
+                        <a class="recbtn" onclick="openModal('recipeModal2')">View Recipe</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="recipe" data-aos="zoom-in">
+                        <img src="images/pizza.jpg" alt="Pizza">
+                        <h3>Margherita Pizza</h3>
+                        <p>Classic Italian pizza topped with fresh tomatoes and basil.</p>
+                        <a class="recbtn" onclick="openModal('recipeModal3')">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="recipe" data-aos="zoom-in">
+                        <img src="images/sushi.jpg" alt="Sushi">
+                        <h3>Sushi</h3>
+                        <p>Japanese dish consisting of vinegared rice and seafood.</p>
+                        <a class="recbtn" onclick="openModal('recipeModal4')">View Recipe</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="recipe" data-aos="zoom-in">
+                        <img src="images/crossaw.jpg" alt="Croissant">
+                        <h3>Croissant</h3>
+                        <p>Flaky French pastry, perfect for breakfast.</p>
+                        <a class="recbtn" onclick="openModal('recipeModal5')">View Recipe</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="recipe" data-aos="zoom-in">
+                        <img src="images/dumplings.jpg" alt="Dumplings">
+                        <h3>Chinese Dumplings</h3>
+                        <p>Steamed or fried dumplings filled with meat or vegetables.</p>
+                        <a class="recbtn" onclick="openModal('recipeModal6')">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer>
+        <p>&copy; 2024 Culinary Chronicles | All Rights Reserved</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal" >
+        <div class="modal-content" style="background-color: white">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="loginUser" placeholder="Username" required>
+            <input type="password" id="loginPass" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+            <p>New to the site? <a onclick="openModal('signupModal')" id="sn">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content" style="background-color: white">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <input type="text" id="signupUser" placeholder="Username" required>
+            <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="password" id="signupPass" placeholder="Password" required>
+            <input type="password" id="signupConfirmPass" placeholder="Confirm Password" required>
+            <button onclick="signup()">Sign Up</button>
+            <p>Existing user? <a onclick="openModal('loginModal'), closeModal('signupModal')" id="sn">login</a></p>
+        </div>
+    </div>
+
+    <!-- Recipe Modal -->
+    <div class="modal" id="recipeModal1">
+    <div class="modal-content" style="background-color: white">
+        <span class="close" onclick="closeModal('recipeModal1')">&times;</span>
+        <h2 id="recipeTitle">Butter Chicken</h2>
+        <h4>Ingredients:</h4>
+        Chicken, Butter, Tomatoes, Onions, Spices (garam masala, cumin, coriander), Cream. <br> <br>
+        <p id="recipeContent">A rich and creamy Indian chicken curry made with marinated chicken cooked in a buttery tomato sauce.</p>
+        <button onclick="closeModal('recipeModal1'),openModal('loginModal')">Login to view more</button>
+    </div>
+</div>
+
+<div class="modal" id="recipeModal2">
+    <div class="modal-content" style="background-color: white">
+        <span class="close" onclick="closeModal('recipeModal2')">&times;</span>
+        <h2 id="recipeTitle">Tacos</h2>
+        <h4>Ingredients:</h4>
+        Tortillas, Ground beef or chicken, Lettuce, Cheese, Salsa, Avocado. <br> <br>
+        <p id="recipeContent">Traditional Mexican dish consisting of folded or rolled tortillas filled with various ingredients, such as beef, chicken, or vegetables.</p>
+        <button onclick="closeModal('recipeModal2'),openModal('loginModal')">Login to view more</button>
+    </div>
+</div>
+
+<div class="modal" id="recipeModal3">
+    <div class="modal-content" style="background-color: white">
+        <span class="close" onclick="closeModal('recipeModal3')">&times;</span>
+        <h2 id="recipeTitle">Margherita Pizza</h2>
+        <h4>Ingredients:</h4>
+        Pizza dough, Tomato sauce, Fresh mozzarella, Basil leaves, Olive oil. <br><br>
+        <p id="recipeContent">Classic Italian pizza topped with fresh tomatoes, mozzarella cheese, and basil.</p>
+        <button onclick="closeModal('recipeModal3'),openModal('loginModal')">Login to view more</button>
+    </div>
+</div>
+
+<div class="modal" id="recipeModal4">
+    <div class="modal-content" style="background-color: white">
+        <span class="close" onclick="closeModal('recipeModal4')">&times;</span>
+        <h2 id="recipeTitle">Sushi</h2>
+        <h4>Ingredients:</h4>
+        Sushi rice, Nori (seaweed), Fresh fish (salmon, tuna), Vegetables (cucumber, avocado), Soy sauce. <br> <br>
+        <p id="recipeContent">Japanese dish consisting of vinegared rice accompanied by various ingredients, often including seafood and vegetables.</p>
+        <button onclick="closeModal('recipeModal4'),openModal('loginModal')">Login to view more</button>
+    </div>
+</div>
+
+<div class="modal" id="recipeModal5">
+    <div class="modal-content" style="background-color: white">
+        <span class="close" onclick="closeModal('recipeModal5')">&times;</span>
+        <h2 id="recipeTitle">Croissant</h2>
+        <h4>Ingredients:</h4>
+            Flour, Butter, Yeast, Milk, Sugar, Salt. <br> <br>
+        <p id="recipeContent">Flaky French pastry made from a layered yeast-leavened dough, perfect for breakfast or as a snack.</p>
+         <button onclick="closeModal('recipeModal5'),openModal('loginModal')">Login to view more</button>
+    </div>
+</div>
+
+<div class="modal" id="recipeModal6">
+    <div class="modal-content" style="background-color: white">
+        <span class="close" onclick="closeModal('recipeModal6')">&times;</span>
+        <h2 id="recipeTitle">Chinese Dumplings</h2>
+        <h4>Ingredients:</h4>
+        Dumpling wrappers, Ground pork or chicken, Cabbage, Green onions, Ginger, Soy sauce. <br> <br>
+        <p id="recipeContent">Steamed or fried dumplings filled with meat or vegetables, commonly served with a dipping sauce.</p>
+        <button onclick="closeModal('recipeModal6'),openModal('loginModal')">Login to view more</button>
+    </div>
+</div>
+
+    <script>
+        // Modal controls
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            if (modalId === 'loginModal') {
+            document.getElementById('loginUser').value = '';
+            document.getElementById('loginPass').value = '';
+            } else if (modalId === 'signupModal') {
+            document.getElementById('signupUser').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPass').value = '';
+            document.getElementById('signupConfirmPass').value = '';
+        }
+        }
+
+        // Signup logic with Local Storage
+        function signup() {
+            let username = document.getElementById('signupUser').value;
+            let email = document.getElementById('signupEmail').value;
+            let password = document.getElementById('signupPass').value;
+            let confirmPassword = document.getElementById('signupConfirmPass').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (username && email && password) {
+                let userData = {
+                    username: username,
+                    email: email,
+                    password: password
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                alert('Signup successful! Please log in.');
+                closeModal('signupModal');
+                openModal('loginModal');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function login() {
+            let username = document.getElementById('loginUser').value;
+            let password = document.getElementById('loginPass').value;
+
+            let storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+            if (storedUserData && username === storedUserData.username && password === storedUserData.password) {
+                window.location.href = 'menu.html';
+                closeModal('loginModal');
+            } else {
+                alert('Incorrect username or password!');
+            }
+        }
+        
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset:100,
+        duration:800,
+      });
+    </script>
+</body>
+</html>
