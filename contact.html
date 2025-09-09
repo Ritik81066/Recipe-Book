@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Chef's Collection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffedcc;
+            color: #333;
+            padding-top: 70px; /* To prevent content overlap with fixed navbar */
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: #CB202D;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+
+        .contact-link {
+             /* Change to a distinct color */
+            color:#ffcc5c; /* Change text color */
+            font-weight: bold ;
+            font-style: italic;
+            font-size: 1.2rem; /* Make the text bold */
+            padding: 10px 15px; /* Add padding */
+        }
+
+
+        /* Header section */
+        .header {
+            background-color: rgb(22, 22, 22);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 60px 0;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            color: #CB202D;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Contact form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Map section */
+        .map {
+            margin-top: 40px;
+        }
+
+        /* Social Media section */
+        .social-icons {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: #d9534f;
+        }
+
+        /* Footer section */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .contact h2 {
+                font-size: 2rem;
+            }
+            .social-icons a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link contact-link">Contact Us</a> <!-- Add a class here -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="header">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you! Reach out for any inquiries or feedback.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-form">
+                <form action="/send-mail" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map">
+                <h3>Our Location</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.1749737772657!2d76.65516437317258!3d30.51609104015239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32344a6e2d7%3A0x81b346dee91799ca!2sChitkara%20University!5e0!3m2!1sen!2sin!4v1729490911295!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer">
+        <p>© 2024 Culinary Chronicles | All Rights Reserved</p>
+    </section>
+</body>
+</html>

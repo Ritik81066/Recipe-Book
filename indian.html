@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Culinary Chronicles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffedcc;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #CB202D;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search-container select {
+            width: 10%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+
+        .menu-link {
+            color: #ffcc5c;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+        }
+
+        .category-title {
+            text-align: left;
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+        }
+
+        button:focus {
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .category-section {
+            display: flex;
+            padding: 10px 0;
+            scrollbar-width: none;
+            overflow-x: auto;
+        }
+
+        .recipe {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            flex: 0 0 250px;
+        }
+
+        .recipe img {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            width: 150px;
+        }
+
+        .recipe h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .recipe button {
+            background-color: #CB202D; /* Red color */
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe button:focus,
+        .recipe button:hover,
+        .recipe button:active {
+            background-color: #CB202D; /* Keep it red in all states */
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="menu.html">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="text-center my-4">Delicious Indian Recipes</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for lunch items..." onkeyup="filterRecipes()">
+        <select id="category" onchange="filterRecipes()">
+            <option value="">All Categories</option>
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <h2 class="category-title">Starters</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="spring rolls" data-category="veg" data-aos="zoom-in">
+                <img src="/images/spring roll.jpg" alt="Spring Rolls">
+                <h3>Spring Rolls</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#springRollsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="samosa" data-category="veg" data-aos="zoom-in">
+                <img src="/images/samosa.jpeg" alt="Samosa">
+                <h3>Samosa</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#samosaModal">View Recipe</button>
+
+            </div>
+            <div class="recipe" data-recipe="chicken pakora" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/chicken pakoda.jpeg" alt="Chicken Pakora">
+                <h3>Chicken Pakora</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chickenPakoraModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="paneer tikka" data-category="veg" data-aos="zoom-in">
+                <img src="/images/paneer tikka.jpeg" alt="Paneer Tikka">
+                <h3>Paneer Tikka</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paneerTikkaModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Main Course</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="shahee paneer" data-category="veg" data-aos="zoom-in">
+                <img src="/images/pneer.jpg" alt="Shahee Paneer">
+                <h3>Shahee Paneer</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#shaheepaneerModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="butter chicken" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/buttr chicken.jpg" alt="Butter Chicken">
+                <h3>Butter Chicken</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#butterChickenModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="mutton biryani" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/mutton biryani.jpg" alt="Mutton Biryani">
+                <h3>Mutton Biryani</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#muttonBiryaniModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="dal makhani" data-category="veg" data-aos="zoom-in">
+                <img src="/images/dal makhni.jpeg" alt="Dal Makhani">
+                <h3>Dal Makhani</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dalMakhaniModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Desserts</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="gulab jamun" data-category="veg" data-aos="zoom-in">
+                <img src="/images/gulab jamun.jpg" alt="Gulab Jamun">
+                <h3>Gulab Jamun</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#gulabJamunModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="rasmalai" data-category="veg" data-aos="zoom-in">
+                <img src="/images/rasmlai.webp" alt="Rasmalai">
+                <h3>Rasmalai</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rasmalaiModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="jalebi" data-category="veg" data-aos="zoom-in">
+                <img src="/images/jalebi.webp" alt="Jalebi">
+                <h3>Jalebi</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jalebiModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="kheer" data-category="veg" data-aos="zoom-in">
+                <img src="/images/kheer.jpeg" alt="Kheer">
+                <h3>Kheer</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kheerModal">View Recipe</button>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Modals for each recipe -->
+       <!-- Spring Rolls Modal -->
+        <center>
+       <div class="modal fade" id="springRollsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Spring Rolls</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/spring roll.jpg" height="250px" width="250px" alt="Spring Rolls">
+                    <h3>Ingredients</h3>
+                    <p>
+                        Spring Roll Wrappers: 10-12 <br>
+                        Cabbage (shredded): 1 cup <br>
+                        Carrots (julienned): ½ cup <br>
+                        Capsicum (julienned): ½ cup <br>
+                        Soy sauce: 1 tablespoon <br>
+                        Salt and pepper to taste <br>
+                        Oil for deep frying <br>
+                    </p>
+                    <h3>Recipe</h3>
+                    <p>
+                        1. <strong>Prepare Filling:</strong> Stir-fry veggies in a pan with soy sauce, salt, and pepper. <br>
+                        2. <strong>Wrap:</strong> Place the filling in the center of each wrapper and roll tightly. <br>
+                        3. <strong>Fry:</strong> Deep fry in hot oil until golden brown. <br>
+                        4. <strong>Serve:</strong> Serve hot with your favorite dipping sauce.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Samosa Modal -->
+    <div class="modal fade" id="samosaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Samosa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/samosa.jpeg" alt="Samosa" height="250px" width="250px">
+                    <h3>Ingredients</h3>
+                    <p>
+                        Potatoes (boiled and mashed): 3 <br>
+                        Peas: ½ cup <br>
+                        Cumin seeds: 1 teaspoon <br>
+                        Garam masala: 1 teaspoon <br>
+                        Samosa dough (flour, water, salt): As required <br>
+                        Oil for deep frying <br>
+                    </p>
+                    <h3>Recipe</h3>
+                    <p>
+                        1. <strong>Prepare Filling:</strong> Mix mashed potatoes, peas, cumin, garam masala, salt. <br>
+                        2. <strong>Shape Samosas:</strong> Roll dough into cones, stuff with filling, and seal edges. <br>
+                        3. <strong>Fry:</strong> Deep fry in hot oil until crispy and golden. <br>
+                        4. <strong>Serve:</strong> Serve hot with chutney.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chicken Pakora Modal -->
+    <div class="modal fade" id="chickenPakoraModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Chicken Pakora</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/chicken pakoda.jpeg" alt="Chicken Pakora" height="250px" width="250px">
+                    <h3>Ingredients</h3>
+                    <p>
+                        Chicken (boneless, cubed): 250g <br>
+                        Chickpea flour: ½ cup <br>
+                        Spices (turmeric, chili powder, garam masala): To taste <br>
+                        Water: As needed for batter <br>
+                        Oil for deep frying <br>
+                    </p>
+                    <h3>Recipe</h3>
+                    <p>
+                        1. <strong>Marinate Chicken:</strong> Mix chicken with spices and set aside. <br>
+                        2. <strong>Prepare Batter:</strong> Mix chickpea flour with water to make a thick batter. <br>
+                        3. <strong>Fry Pakoras:</strong> Dip chicken in batter and deep fry until crispy. <br>
+                        4. <strong>Serve:</strong> Serve hot with chutney or ketchup.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paneer Tikka Modal -->
+<div class="modal fade" id="paneerTikkaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Paneer Tikka</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/paneer tikka.jpeg" alt="Paneer Tikka" height="250px" width="250px">
+                <h3>Ingredients</h3>
+                <p>
+                    Paneer (cubed): 250g <br>
+                    Yogurt: ½ cup <br>
+                    Spices (turmeric, cumin, garam masala, chili powder): To taste <br>
+                    Lemon juice: 1 tbsp <br>
+                    Oil for grilling <br>
+                    Vegetables (capsicum, onion, tomato): As needed <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Marinate Paneer:</strong> Mix yogurt, spices, and lemon juice. Marinate paneer and veggies for 30 minutes. <br>
+                    2. <strong>Grill Tikka:</strong> Skewer marinated paneer and veggies, grill until golden. <br>
+                    3. <strong>Serve:</strong> Serve hot with mint chutney.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Paneer Butter Masala Modal -->
+    <div class="modal fade" id="shaheepaneerModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Shahee Paneer</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/pneer.jpg" alt="Shahee Paneer" height="250px" width="250px">
+                    <h3>Ingredients</h3>
+                    <p>
+                        Paneer (cubed): 250g <br>
+                        Butter: 2 tablespoons <br>
+                        Tomatoes (pureed): 3 <br>
+                        Cream: ¼ cup <br>
+                        Spices (turmeric, garam masala): To taste <br>
+                    </p>
+                    <h3>Recipe</h3>
+                    <p>
+                        1. <strong>Make Gravy:</strong> Sauté tomatoes and spices in butter, then blend. <br>
+                        2. <strong>Add Paneer:</strong> Add paneer cubes to the gravy and cook. <br>
+                        3. <strong>Finish:</strong> Stir in cream and cook for a few more minutes. <br>
+                        4. <strong>Serve:</strong> Serve hot with naan or rice.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Butter Chicken Modal -->
+    <div class="modal fade" id="butterChickenModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Butter Chicken</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/buttr chicken.jpg" alt="Butter Chicken" height="250px" width="250px">
+                    <h3>Ingredients</h3>
+                    <p>
+                        Chicken (boneless, cubed): 300g <br>
+                        Butter: 3 tablespoons <br>
+                        Tomatoes (pureed): 4 <br>
+                        Cream: ½ cup <br>
+                        Garam masala: 1 teaspoon <br>
+                    </p>
+                    <h3>Recipe</h3>
+                    <p>
+                        1. <strong>Marinate Chicken:</strong> Marinate chicken with spices and yogurt. <br>
+                        2. <strong>Cook Chicken:</strong> Fry marinated chicken in butter. <br>
+                        3. <strong>Make Gravy:</strong> Cook tomato puree and spices, add cream and butter. <br>
+                        4. <strong>Serve:</strong> Mix chicken with gravy, garnish with cream, and serve hot.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mutton Biryani Modal -->
+    <div class="modal fade" id="muttonBiryaniModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Mutton Biryani</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/mutton biryani.jpg" alt="Mutton Biryani" height="250px" width="250px">
+                    <h3>Ingredients</h3>
+                    <p>
+                        Mutton: 500g <br>
+                        Basmati Rice: 2 cups <br>
+                        Onions (fried): 2 <br>
+                        Biryani spices (cloves, cinnamon, bay leaves): To taste <br>
+                        Yogurt: ½ cup <br>
+                        Oil: 3 tablespoons <br>
+                    </p>
+                    <h3>Recipe</h3>
+                    <p>
+                        1. <strong>Marinate Mutton:</strong> Marinate mutton with yogurt and spices for 1 hour. <br>
+                        2. <strong>Cook Mutton:</strong> Fry onions, add marinated mutton, and cook until tender. <br>
+                        3. <strong>Cook Rice:</strong> Parboil basmati rice with whole spices. <br>
+                        4. <strong>Layer and Cook:</strong> Layer mutton and rice in a pot, cook on low heat. <br>
+                        5. <strong>Serve:</strong> Garnish with fried onions and serve hot.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Dal Makhani Modal -->
+<div class="modal fade" id="dalMakhaniModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Dal Makhani</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/dal makhni.jpeg" alt="Dal Makhani" height="250px" width="250px">
+                <h3>Ingredients</h3>
+                <p>
+                    Whole black lentils: 1 cup <br>
+                    Kidney beans: ¼ cup <br>
+                    Butter: 2 tbsp <br>
+                    Cream: ¼ cup <br>
+                    Spices (turmeric, cumin, chili powder, garam masala): To taste <br>
+                    Tomato puree: 1 cup <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook Lentils:</strong> Soak and cook lentils and kidney beans until soft. <br>
+                    2. <strong>Prepare Gravy:</strong> Fry spices in butter, add tomato puree, and cook. <br>
+                    3. <strong>Combine:</strong> Add cooked lentils, simmer with cream. <br>
+                    4. <strong>Serve:</strong> Garnish with butter and serve with naan or rice.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Kheer Modal -->
+<div class="modal fade" id="kheerModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Kheer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/kheer.jpeg" alt="Kheer" height="250px" width="250px">
+                <h3>Ingredients</h3>
+                <p> 
+                    Basmati rice: ¼ cup <br>
+                    Milk: 1 liter <br>
+                    Sugar: ½ cup <br>
+                    Cardamom powder: ½ tsp <br>
+                    Saffron strands: Few <br>
+                    Dry fruits (almonds, cashews, raisins): To garnish <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook Rice:</strong> Wash rice, cook in milk on low heat until soft. <br>
+                    2. <strong>Add Sugar:</strong> Stir in sugar, cardamom, and saffron, cook until thickened. <br>
+                    3. <strong>Garnish:</strong> Add dry fruits, serve warm or chilled.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gulab Jamun Modal -->
+
+<div class="modal fade" id="gulabJamunModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Gulab Jamun</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/gulab jamun.jpg" alt="Gulab Jamun" height="250px" width="250px">
+                <h3>Ingredients</h3>
+                <p>
+                    Khoya (grated): 200g <br>
+                    All-purpose flour: 2 tablespoons <br>
+                    Sugar: 2 cups <br>
+                    Cardamom powder: 1 teaspoon <br>
+                    Rose water: 1 tablespoon <br>
+                    Oil for frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Make Dough:</strong> Mix khoya and flour, knead into a smooth dough. <br>
+                    2. <strong>Shape:</strong> Roll dough into small balls. <br>
+                    3. <strong>Fry:</strong> Deep fry the balls until golden brown. <br>
+                    4. <strong>Soak in Syrup:</strong> Dip fried balls in sugar syrup flavored with cardamom and rose water. <br>
+                    5. <strong>Serve:</strong> Serve warm or chilled.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rasmalai Modal -->
+<div class="modal fade" id="rasmalaiModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Rasmalai</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/rasmlai.webp" alt="Rasmalai" height="250px" width="250px">
+                <h3>Ingredients</h3>
+                <p>
+                    Paneer (cottage cheese balls): 10 <br>
+                    Milk: 1 liter <br>
+                    Sugar: 1 cup <br>
+                    Saffron: A few strands <br>
+                    Cardamom powder: 1 teaspoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Prepare Milk Syrup:</strong> Boil milk, add saffron, sugar, and cardamom powder. <br>
+                    2. <strong>Add Paneer:</strong> Gently add paneer balls and let them soak in the syrup. <br>
+                    3. <strong>Simmer:</strong> Let it simmer for a few minutes, then cool. <br>
+                    4. <strong>Serve:</strong> Serve chilled, garnished with nuts.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jalebi Modal -->
+<div class="modal fade" id="jalebiModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Jalebi</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/jalebi.webp" alt="Jalebi" height="250px" width="250px">
+                <h3>Ingredients</h3>
+                <p>
+                    All-purpose flour: 1 cup <br>
+                    Yogurt: ½ cup <br>
+                    Sugar: 1 cup <br>
+                    Saffron: A few strands <br>
+                    Ghee or oil for frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Make Batter:</strong> Mix flour and yogurt to form a thick batter, ferment overnight. <br>
+                    2. <strong>Prepare Syrup:</strong> Make a sugar syrup flavored with saffron. <br>
+                    3. <strong>Shape Jalebis:</strong> Pipe the batter into hot oil in spiral shapes and fry until crispy. <br>
+                    4. <strong>Soak in Syrup:</strong> Dip the fried jalebis in syrup and serve hot.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</center>
+
+    <footer class="footer">
+        <p>&copy; 2024 Culinary Chronicles. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterRecipes() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category').value;
+            const recipes = document.querySelectorAll('.recipe');
+
+            recipes.forEach(recipe => {
+                const recipeName = recipe.dataset.recipe.toLowerCase();
+                const recipeCategory = recipe.dataset.category;
+
+                const matchesSearch = recipeName.includes(searchInput);
+                const matchesCategory = selectedCategory === '' || recipeCategory === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    recipe.style.display = 'block';
+                } else {
+                    recipe.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    offset:100,
+    duration:800,
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Culinary Chronicles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome for social media icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffedcc;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #CB202D;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search-container select {
+            width: 10%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+
+        .menu-link {
+            color: #ffcc5c;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+        }
+
+        .category-title {
+            text-align: left;
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+        }
+
+        button:focus {
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .category-section {
+            display: flex;
+            padding: 10px 0;
+            scrollbar-width: none;
+            overflow-x: auto;
+        }
+
+        .recipe {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            flex: 0 0 250px;
+        }
+
+        .recipe img {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            width: 150px;
+        }
+
+        .recipe h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .recipe button {
+            background-color: #CB202D; /* Red color */
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe button:focus,
+        .recipe button:hover,
+        .recipe button:active {
+            background-color: #CB202D; /* Keep it red in all states */
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="menu.html">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="text-center my-4">Delicious Mexican Recipes</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for lunch items..." onkeyup="filterRecipes()">
+        <select id="category" onchange="filterRecipes()">
+            <option value="">All Categories</option>
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+        </select>
+    </div>
+    <div class="container">
+    <h2 class="category-title">Starters</h2>
+    <div class="category-section">
+        <div class="recipe" data-recipe="quesadilla" data-category="veg" data-aos="zoom-in">
+            <img src="/images/Quesadilla.jpeg" alt="Quesadilla">
+            <h3>Quesadilla</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quesadillaModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="guacamole" data-category="veg" data-aos="zoom-in">
+            <img src="/images/Guacamole.jpeg" alt="Guacamole">
+            <h3>Guacamole</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#guacamoleModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="chicken taquitos" data-category="non-veg" data-aos="zoom-in">
+            <img src="/images/Chicken Taquitos.jpeg" alt="Chicken Taquitos">
+            <h3>Chicken Taquitos</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chickenTaquitosModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="elote" data-category="veg" data-aos="zoom-in">
+            <img src="/images/Elote.jpeg" alt="Elote">
+            <h3>Elote</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eloteModal">View Recipe</button>
+        </div>
+    </div>
+
+    <h2 class="category-title">Main Course</h2>
+    <div class="category-section">
+        <div class="recipe" data-recipe="tacos al pastor" data-category="non-veg" data-aos="zoom-in">
+            <img src="/images/Tacos al Pastor.jpeg" alt="Tacos al Pastor">
+            <h3>Tacos al Pastor</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tacosAlPastorModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="chiles en nogada" data-category="non-veg" data-aos="zoom-in">
+            <img src="/images/Chiles en Nogada.jpeg" alt="Chiles en Nogada">
+            <h3>Chiles en Nogada</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chilesEnNogadaModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="enchiladas" data-category="non-veg" data-aos="zoom-in">
+            <img src="/images/Enchilada.jpeg" alt="Enchiladas">
+            <h3>Enchiladas</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enchiladasModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="vegetarian burrito" data-category="veg" data-aos="zoom-in">
+            <img src="/images/Vegetarian Burrito.jpeg" alt="Vegetarian Burrito">
+            <h3>Vegetarian Burrito</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vegetarianBurritoModal">View Recipe</button>
+        </div>
+    </div>
+
+    <h2 class="category-title">Desserts</h2>
+    <div class="category-section">
+        <div class="recipe" data-recipe="churros" data-category="veg" data-aos="zoom-in">
+            <img src="/images/churros.jpeg" alt="Churros">
+            <h3>Churros</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#churrosModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="flan" data-category="veg" data-aos="zoom-in">
+            <img src="/images/flan.jpeg" alt="Flan">
+            <h3>Flan</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flanModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="tres leches cake" data-category="veg" data-aos="zoom-in">
+            <img src="/images/Tres Leches Cake.jpeg" alt="Tres Leches Cake">
+            <h3>Tres Leches Cake</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tresLechesCakeModal">View Recipe</button>
+        </div>
+        <div class="recipe" data-recipe="cajeta" data-category="veg" data-aos="zoom-in">
+            <img src="/images/Cajeta.jpeg" alt="Cajeta">
+            <h3>Cajeta</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cajetaModal">View Recipe</button>
+        </div>
+    </div>
+</div>
+    <center>
+     <!-- Modals for each recipe -->
+       <!-- Quesadilla Modal -->
+<div class="modal fade" id="quesadillaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Quesadilla</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Quesadilla.jpeg" height="250px" width="250px" alt="Quesadilla">
+                <h3>Ingredients</h3>
+                <p>
+                    Tortillas: 2 <br>
+                    Cheese (shredded): 1 cup <br>
+                    Optional fillings: Chicken, beans, veggies <br>
+                    Salsa and sour cream for serving <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Heat:</strong> Heat a tortilla in a pan. <br>
+                    2. <strong>Add cheese:</strong> Sprinkle cheese and other fillings on one half. <br>
+                    3. <strong>Fold & Cook:</strong> Fold the tortilla and cook until crispy and golden. <br>
+                    4. <strong>Serve:</strong> Serve with salsa and sour cream.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Guacamole Modal -->
+<div class="modal fade" id="guacamoleModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Guacamole</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Guacamole.jpeg" height="250px" width="250px" alt="Guacamole">
+                <h3>Ingredients</h3>
+                <p>
+                    Ripe avocados: 2 <br>
+                    Onion (finely chopped): ½ cup <br>
+                    Tomato (diced): ½ cup <br>
+                    Lime juice: 1 tablespoon <br>
+                    Salt and pepper to taste <br>
+                    Cilantro for garnish <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Mash avocados:</strong> In a bowl, mash the avocados. <br>
+                    2. <strong>Add ingredients:</strong> Stir in onion, tomato, lime juice, salt, and pepper. <br>
+                    3. <strong>Mix:</strong> Mix everything together and garnish with cilantro. <br>
+                    4. <strong>Serve:</strong> Serve with tortilla chips.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chicken Taquitos Modal -->
+<div class="modal fade" id="taquitosModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Chicken Taquitos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Chicken Taquitos.jpeg" height="250px" width="250px" alt="Chicken Taquitos">
+                <h3>Ingredients</h3>
+                <p>
+                    Shredded chicken: 1 cup <br>
+                    Tortillas: 10 <br>
+                    Cheese (optional): ½ cup <br>
+                    Salsa for serving <br>
+                    Oil for frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Fill:</strong> Place shredded chicken on each tortilla. Add cheese if desired. <br>
+                    2. <strong>Roll:</strong> Roll the tortillas tightly and secure with toothpicks. <br>
+                    3. <strong>Fry:</strong> Deep fry until crispy and golden brown. <br>
+                    4. <strong>Serve:</strong> Serve with salsa.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Elote Modal -->
+<div class="modal fade" id="eloteModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Elote</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Elote.jpeg" height="250px" width="250px" alt="Elote">
+                <h3>Ingredients</h3>
+                <p>
+                    Corn on the cob: 4 <br>
+                    Mayonnaise: ¼ cup <br>
+                    Cotija cheese (crumbled): ½ cup <br>
+                    Chili powder: 1 teaspoon <br>
+                    Lime wedges for serving <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Grill corn:</strong> Grill the corn until slightly charred. <br>
+                    2. <strong>Coat:</strong> Spread mayonnaise on the corn. <br>
+                    3. <strong>Top:</strong> Sprinkle with Cotija cheese and chili powder. <br>
+                    4. <strong>Serve:</strong> Serve with lime wedges.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tacos al Pastor Modal -->
+<div class="modal fade" id="tacosAlPastorModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Tacos al Pastor</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Tacos al Pastor.jpeg" height="250px" width="250px" alt="Tacos al Pastor">
+                <h3>Ingredients</h3>
+                <p>
+                    Pork (thinly sliced): 1 lb <br>
+                    Pineapple (diced): ½ cup <br>
+                    Tortillas: 10 <br>
+                    Onion (chopped): ½ cup <br>
+                    Cilantro: ¼ cup <br>
+                    Lime wedges for serving <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook pork:</strong> Cook the pork until well browned. <br>
+                    2. <strong>Assemble tacos:</strong> Place pork, pineapple, onion, and cilantro in each tortilla. <br>
+                    3. <strong>Serve:</strong> Serve with lime wedges.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chiles en Nogada Modal -->
+<div class="modal fade" id="chilesEnNogadaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Chiles en Nogada</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Chiles en Nogada.jpeg" height="250px" width="250px" alt="Chiles en Nogada">
+                <h3>Ingredients</h3>
+                <p>
+                    Poblano peppers: 4 <br>
+                    Ground meat (beef or pork): 1 lb <br>
+                    Raisins: ¼ cup <br>
+                    Walnuts (chopped): ¼ cup <br>
+                    Nogada sauce: 1 cup <br>
+                    Pomegranate seeds for garnish <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Roast peppers:</strong> Roast and peel poblano peppers. <br>
+                    2. <strong>Prepare filling:</strong> Cook ground meat with raisins and walnuts. <br>
+                    3. <strong>Fill peppers:</strong> Stuff the peppers with the meat mixture. <br>
+                    4. <strong>Top:</strong> Cover with nogada sauce and garnish with pomegranate seeds.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enchiladas Modal -->
+<div class="modal fade" id="enchiladasModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Enchiladas</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Enchilada.jpeg" height="250px" width="250px" alt="Enchiladas">
+                <h3>Ingredients</h3>
+                <p>
+                    Tortillas: 10 <br>
+                    Shredded chicken or beef: 1 lb <br>
+                    Enchilada sauce: 1 cup <br>
+                    Cheese (shredded): 1 cup <br>
+                    Sour cream for serving <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Fill tortillas:</strong> Add meat to each tortilla. <br>
+                    2. <strong>Roll & place:</strong> Roll the tortillas and place them in a baking dish. <br>
+                    3. <strong>Top with sauce:</strong> Pour enchilada sauce and sprinkle with cheese. <br>
+                    4. <strong>Bake:</strong> Bake until the cheese is melted and bubbly. <br>
+                    5. <strong>Serve:</strong> Serve with sour cream.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vegetarian Burrito Modal -->
+<div class="modal fade" id="vegetarianBurritoModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Vegetarian Burrito</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Vegetarian Burrito.jpeg" height="250px" width="250px" alt="Vegetarian Burrito">
+                <h3>Ingredients</h3>
+                <p>
+                    Tortillas: 2 <br>
+                    Rice: 1 cup <br>
+                    Black beans: ½ cup <br>
+                    Avocado (sliced): 1 <br>
+                    Salsa: ½ cup <br>
+                    Lettuce: ½ cup <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Layer ingredients:</strong> Add rice, beans, avocado, salsa, and lettuce to each tortilla. <br>
+                    2. <strong>Roll:</strong> Roll the tortillas tightly. <br>
+                    3. <strong>Serve:</strong> Serve with additional salsa or hot sauce.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Churros Modal -->
+<div class="modal fade" id="churrosModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Churros</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/churros.jpeg" height="250px" width="250px" alt="Churros">
+                <h3>Ingredients</h3>
+                <p>
+                    Flour: 1 cup <br>
+                    Water: 1 cup <br>
+                    Butter: 2 tablespoons <br>
+                    Sugar: ¼ cup <br>
+                    Cinnamon: 1 teaspoon <br>
+                    Oil for frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Make dough:</strong> Boil water, butter, and flour to form a dough. <br>
+                    2. <strong>Shape:</strong> Pipe the dough into hot oil using a star-shaped nozzle. <br>
+                    3. <strong>Fry:</strong> Fry until golden and crispy. <br>
+                    4. <strong>Coat:</strong> Roll in sugar and cinnamon while hot. <br>
+                    5. <strong>Serve:</strong> Serve with chocolate sauce.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Flan Modal -->
+<div class="modal fade" id="flanModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Flan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/flan.jpeg" height="250px" width="250px" alt="Flan">
+                <h3>Ingredients</h3>
+                <p>
+                    Eggs: 4 <br>
+                    Sweetened condensed milk: 1 can <br>
+                    Evaporated milk: 1 can <br>
+                    Sugar: 1 cup (for caramel) <br>
+                    Vanilla extract: 1 teaspoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Make caramel:</strong> Heat sugar until melted and golden, then pour into a mold. <br>
+                    2. <strong>Mix ingredients:</strong> Blend eggs, condensed milk, evaporated milk, and vanilla. <br>
+                    3. <strong>Bake:</strong> Pour the mixture over caramel and bake in a water bath until set. <br>
+                    4. <strong>Serve:</strong> Chill and invert to serve.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tres Leches Cake Modal -->
+<div class="modal fade" id="tresLechesCakeModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Tres Leches Cake</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Tres Leches Cake.jpeg" height="250px" width="250px" alt="Tres Leches Cake">
+                <h3>Ingredients</h3>
+                <p>
+                    Flour: 1 cup <br>
+                    Eggs: 4 <br>
+                    Sugar: 1 cup <br>
+                    Whole milk: 1/3 cup <br>
+                    Evaporated milk: 1 can <br>
+                    Sweetened condensed milk: 1 can <br>
+                    Heavy cream: 1 cup <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Bake cake:</strong> Mix flour, eggs, and sugar to make the cake. Bake until golden. <br>
+                    2. <strong>Make milk mixture:</strong> Combine evaporated milk, condensed milk, and cream. <br>
+                    3. <strong>Soak cake:</strong> Poke holes in the cake and pour the milk mixture over it. <br>
+                    4. <strong>Chill & serve:</strong> Chill and serve with whipped cream.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cajeta Modal -->
+<div class="modal fade" id="cajetaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Cajeta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Cajeta.jpeg" height="250px" width="250px" alt="Cajeta">
+                <h3>Ingredients</h3>
+                <p>
+                    Goat’s milk: 4 cups <br>
+                    Sugar: 1 cup <br>
+                    Cinnamon: 1 stick <br>
+                    Baking soda: 1/4 teaspoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Boil milk:</strong> Heat milk with sugar and cinnamon until simmering. <br>
+                    2. <strong>Thicken:</strong> Add baking soda and stir constantly as the mixture thickens. <br>
+                    3. <strong>Cook:</strong> Cook until it becomes a thick caramel. <br>
+                    4. <strong>Cool & serve:</strong> Let it cool and serve as a topping for desserts.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</center>
+
+    <footer class="footer">
+        <p>&copy; 2024 Culinary Chronicles. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterRecipes() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category').value;
+            const recipes = document.querySelectorAll('.recipe');
+
+            recipes.forEach(recipe => {
+                const recipeName = recipe.dataset.recipe.toLowerCase();
+                const recipeCategory = recipe.dataset.category;
+
+                const matchesSearch = recipeName.includes(searchInput);
+                const matchesCategory = selectedCategory === '' || recipeCategory === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    recipe.style.display = 'block';
+                } else {
+                    recipe.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    offset:100,
+    duration:800,
+  });
+</script>
+</body>
+</html>

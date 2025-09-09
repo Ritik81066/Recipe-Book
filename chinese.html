@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Culinary Chronicles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffedcc;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #CB202D;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search-container select {
+            width: 10%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+
+        .menu-link {
+            color: #ffcc5c;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+        }
+
+        .category-title {
+            text-align: left;
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+        }
+
+        button:focus {
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .category-section {
+            display: flex;
+            padding: 10px 0;
+            scrollbar-width: none;
+            overflow-x: auto;
+        }
+
+        .recipe {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            flex: 0 0 250px;
+        }
+
+        .recipe img {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            width: 150px;
+        }
+
+        .recipe h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .recipe button {
+            background-color: #CB202D; /* Red color */
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe button:focus,
+        .recipe button:hover,
+        .recipe button:active {
+            background-color: #CB202D; /* Keep it red in all states */
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="menu.html">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="text-center my-4">Delicious Chinese Recipes</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for lunch items..." onkeyup="filterRecipes()">
+        <select id="category" onchange="filterRecipes()">
+            <option value="">All Categories</option>
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <h2 class="category-title">Starters</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="spring rolls" data-category="veg" data-aos="zoom-in">
+                <img src="/images/spring roll.jpg" alt="Spring Rolls">
+                <h3>Spring Rolls</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#springRollsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="dumplings" data-category="veg" data-aos="zoom-in">
+                <img src="/images/dumplings.jpg" alt="Dumplings">
+                <h3>Dumplings</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dumplingsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="chicken wings" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/chicken wings.jpeg" alt="Chicken Wings">
+                <h3>Chicken Wings</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chickenWingsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="vegetable spring rolls" data-category="veg" data-aos="zoom-in">
+                <img src="/images/vegetable spring roll.jpeg" alt="Vegetable Spring Rolls">
+                <h3>Vegetable Spring Rolls</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vegetableSpringRollsModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Main Course</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="fried rice" data-category="veg" data-aos="zoom-in">
+                <img src="/images/fried rice.jpeg" alt="Fried Rice">
+                <h3>Fried Rice</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#friedRiceModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="kung pao chicken" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/kung pao.jpeg" alt="Kung Pao Chicken">
+                <h3>Kung Pao Chicken</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kungPaoChickenModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="beef and broccoli" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/beef.jpeg" alt="Beef and Broccoli">
+                <h3>Beef and Broccoli</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#beefAndBroccoliModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="mapo tofu" data-category="veg" data-aos="zoom-in">
+                <img src="/images/mapo tofu.jpeg" alt="Mapo Tofu">
+                <h3>Mapo Tofu</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapoTofuModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Desserts</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="mango pudding" data-category="veg" data-aos="zoom-in">
+                <img src="/images/mango pudding.jpeg" alt="Mango Pudding">
+                <h3>Mango Pudding</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mangoPuddingModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="sesame balls" data-category="veg" data-aos="zoom-in">
+                <img src="/images/sesame balls.jpeg" alt="Sesame Balls">
+                <h3>Sesame Balls</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sesameBallsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="egg tarts" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/egg tarts.jpeg" alt="Egg Tarts">
+                <h3>Egg Tarts</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eggTartsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="red bean soup" data-category="veg" data-aos="zoom-in">
+                <img src="/images/red bean soup.jpeg" alt="Red Bean Soup">
+                <h3>Red Bean Soup</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#redBeanSoupModal">View Recipe</button>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Modals for each recipe -->
+      <center>
+       <!-- Spring Rolls Modal -->
+<div class="modal fade" id="springRollsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Spring Rolls</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/spring roll.jpg" height="250px" width="250px" alt="Spring Rolls">
+                <h3>Ingredients</h3>
+                <p>
+                    Spring Roll Wrappers: 10-12 <br>
+                    Cabbage (shredded): 1 cup <br>
+                    Carrots (julienned): ½ cup <br>
+                    Capsicum (julienned): ½ cup <br>
+                    Soy sauce: 1 tablespoon <br>
+                    Salt and pepper to taste <br>
+                    Oil for deep frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Prepare Filling:</strong> Stir-fry veggies in a pan with soy sauce, salt, and pepper. <br>
+                    2. <strong>Wrap:</strong> Place the filling in the center of each wrapper and roll tightly. <br>
+                    3. <strong>Fry:</strong> Deep fry in hot oil until golden brown. <br>
+                    4. <strong>Serve:</strong> Serve hot with your favorite dipping sauce.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dumplings Modal -->
+<div class="modal fade" id="dumplingsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Dumplings</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/dumplings.jpg" height="250px" width="250px" alt="Dumplings">
+                <h3>Ingredients</h3>
+                <p>
+                    Dumpling Wrappers: 20 <br>
+                    Ground Pork: 1 cup <br>
+                    Cabbage (finely chopped): 1 cup <br>
+                    Green Onions: 2 (chopped) <br>
+                    Ginger (minced): 1 teaspoon <br>
+                    Soy Sauce: 2 tablespoons <br>
+                    Sesame Oil: 1 tablespoon <br>
+                    Salt and Pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Make Filling:</strong> Mix all filling ingredients in a bowl. <br>
+                    2. <strong>Wrap:</strong> Place a spoonful of filling on each wrapper and fold. <br>
+                    3. <strong>Cook:</strong> Steam or boil until cooked through. <br>
+                    4. <strong>Serve:</strong> Serve with soy sauce for dipping.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chicken Wings Modal -->
+<div class="modal fade" id="chickenWingsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Chicken Wings</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/chicken wings.jpeg" height="250px" width="250px" alt="Chicken Wings">
+                <h3>Ingredients</h3>
+                <p>
+                    Chicken Wings: 1 kg <br>
+                    Soy Sauce: ½ cup <br>
+                    Honey: ¼ cup <br>
+                    Garlic (minced): 2 cloves <br>
+                    Ginger (grated): 1 tablespoon <br>
+                    Sesame Seeds: for garnish <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Marinate:</strong> Combine soy sauce, honey, garlic, and ginger. Marinate wings for at least 30 minutes. <br>
+                    2. <strong>Bake:</strong> Bake at 200°C (400°F) for 30-35 minutes, turning halfway. <br>
+                    3. <strong>Garnish:</strong> Sprinkle with sesame seeds before serving.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vegetable Spring Rolls Modal -->
+<div class="modal fade" id="vegetableSpringRollsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Vegetable Spring Rolls</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetable spring roll.jpeg" height="250px" width="250px" alt="Vegetable Spring Rolls">
+                <h3>Ingredients</h3>
+                <p>
+                    Spring Roll Wrappers: 10-12 <br>
+                    Cabbage (shredded): 1 cup <br>
+                    Carrots (julienned): ½ cup <br>
+                    Bell Peppers (julienned): ½ cup <br>
+                    Soy Sauce: 1 tablespoon <br>
+                    Salt and Pepper to taste <br>
+                    Oil for frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Prepare Filling:</strong> Stir-fry veggies with soy sauce, salt, and pepper. <br>
+                    2. <strong>Wrap:</strong> Place filling on wrappers and roll tightly. <br>
+                    3. <strong>Fry:</strong> Deep fry until golden brown. <br>
+                    4. <strong>Serve:</strong> Serve with sweet chili sauce.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fried Rice Modal -->
+<div class="modal fade" id="friedRiceModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Fried Rice</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/fried rice.jpeg" height="250px" width="250px" alt="Fried Rice">
+                <h3>Ingredients</h3>
+                <p>
+                    Cooked Rice: 3 cups <br>
+                    Mixed Vegetables: 1 cup <br>
+                    Soy Sauce: 3 tablespoons <br>
+                    Eggs: 2 (beaten) <br>
+                    Green Onions: 2 (chopped) <br>
+                    Oil: 2 tablespoons <br>
+                    Salt and Pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Heat Oil:</strong> In a pan, heat oil and scramble the eggs. <br>
+                    2. <strong>Add Veggies:</strong> Add mixed vegetables and cook for a few minutes. <br>
+                    3. <strong>Add Rice:</strong> Add cooked rice, soy sauce, and mix well. <br>
+                    4. <strong>Serve:</strong> Garnish with green onions before serving.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kung Pao Chicken Modal -->
+<div class="modal fade" id="kungPaoChickenModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Kung Pao Chicken</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/kung pao.jpeg" height="250px" width="250px" alt="Kung Pao Chicken">
+                <h3>Ingredients</h3>
+                <p>
+                    Chicken Breast: 500g (cubed) <br>
+                    Peanuts: ½ cup <br>
+                    Bell Peppers: 1 (diced) <br>
+                    Soy Sauce: 3 tablespoons <br>
+                    Rice Vinegar: 1 tablespoon <br>
+                    Garlic (minced): 2 cloves <br>
+                    Ginger (grated): 1 tablespoon <br>
+                    Red Pepper Flakes: to taste <br>
+                    Cornstarch: 1 tablespoon (optional for thickening) <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Marinate Chicken:</strong> Combine chicken with soy sauce and let sit for 15 minutes. <br>
+                    2. <strong>Cook Chicken:</strong> Stir-fry in a hot pan until cooked through. <br>
+                    3. <strong>Add Veggies:</strong> Add peppers, peanuts, and spices. Stir-fry for 2-3 minutes. <br>
+                    4. <strong>Serve:</strong> Serve hot with rice.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Beef and Broccoli Modal -->
+<div class="modal fade" id="beefBroccoliModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Beef and Broccoli</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/beef.jpeg" height="250px" width="250px" alt="Beef and Broccoli">
+                <h3>Ingredients</h3>
+                <p>
+                    Beef (sliced thin): 500g <br>
+                    Broccoli: 2 cups (cut into florets) <br>
+                    Soy Sauce: 3 tablespoons <br>
+                    Oyster Sauce: 2 tablespoons <br>
+                    Garlic (minced): 2 cloves <br>
+                    Ginger (grated): 1 tablespoon <br>
+                    Oil for stir-frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Marinate Beef:</strong> Combine beef with soy sauce and let sit for 15 minutes. <br>
+                    2. <strong>Stir-Fry:</strong> Heat oil and stir-fry beef until browned. Remove and set aside. <br>
+                    3. <strong>Add Broccoli:</strong> Stir-fry broccoli until tender, then add beef back in. <br>
+                    4. <strong>Serve:</strong> Serve hot with rice.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mapo Tofu Modal -->
+<div class="modal fade" id="mapoTofuModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Mapo Tofu</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/mapo tofu.jpeg" height="250px" width="250px" alt="Mapo Tofu">
+                <h3>Ingredients</h3>
+                <p>
+                    Firm Tofu: 400g (cubed) <br>
+                    Ground Pork: 200g <br>
+                    Doubanjiang (spicy bean paste): 1 tablespoon <br>
+                    Soy Sauce: 2 tablespoons <br>
+                    Garlic (minced): 2 cloves <br>
+                    Ginger (grated): 1 tablespoon <br>
+                    Green Onions: 2 (chopped) <br>
+                    Sichuan Peppercorns: to taste <br>
+                    Oil for cooking <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook Pork:</strong> Heat oil and stir-fry ground pork until browned. <br>
+                    2. <strong>Add Tofu:</strong> Carefully add tofu and cook with doubanjiang and soy sauce. <br>
+                    3. <strong>Simmer:</strong> Let simmer until heated through. <br>
+                    4. <strong>Serve:</strong> Garnish with green onions and peppercorns.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mango Pudding Modal -->
+<div class="modal fade" id="mangoPuddingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Mango Pudding</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/mango pudding.jpeg" height="250px" width="250px" alt="Mango Pudding">
+                <h3>Ingredients</h3>
+                <p>
+                    Ripe Mangoes: 2 (pureed) <br>
+                    Coconut Milk: 1 cup <br>
+                    Sugar: ¼ cup <br>
+                    Gelatin: 2 tablespoons (dissolved in water) <br>
+                    Water: ½ cup <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Blend:</strong> Blend mangoes, coconut milk, and sugar until smooth. <br>
+                    2. <strong>Add Gelatin:</strong> Stir in dissolved gelatin and mix well. <br>
+                    3. <strong>Chill:</strong> Pour into molds and refrigerate until set. <br>
+                    4. <strong>Serve:</strong> Serve chilled as a dessert.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sesame Balls Modal -->
+<div class="modal fade" id="sesameBallsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Sesame Balls</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/sesame balls.jpeg" height="250px" width="250px" alt="Sesame Balls">
+                <h3>Ingredients</h3>
+                <p>
+                    Glutinous Rice Flour: 2 cups <br>
+                    Water: ¾ cup <br>
+                    Red Bean Paste: 1 cup <br>
+                    Sesame Seeds: ½ cup <br>
+                    Oil for frying <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Make Dough:</strong> Mix glutinous rice flour and water to form a dough. <br>
+                    2. <strong>Form Balls:</strong> Take a piece of dough, fill with red bean paste, and roll into a ball. <br>
+                    3. <strong>Coat:</strong> Roll in sesame seeds. <br>
+                    4. <strong>Fry:</strong> Deep fry until golden brown and serve warm.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Egg Tarts Modal -->
+<div class="modal fade" id="eggTartsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Egg Tarts</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/egg tarts.jpeg" height="250px" width="250px" alt="Egg Tarts">
+                <h3>Ingredients</h3>
+                <p>
+                    Tart Shells: 10 <br>
+                    Eggs: 3 <br>
+                    Sugar: ½ cup <br>
+                    Milk: 1 cup <br>
+                    Vanilla Extract: 1 teaspoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Preheat Oven:</strong> Preheat to 180°C (350°F). <br>
+                    2. <strong>Mix Filling:</strong> Whisk eggs, sugar, milk, and vanilla until smooth. <br>
+                    3. <strong>Fill Shells:</strong> Pour mixture into tart shells. <br>
+                    4. <strong>Bake:</strong> Bake for 25-30 minutes or until set.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Red Bean Soup Modal -->
+<div class="modal fade" id="redBeanSoupModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Red Bean Soup</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/red bean soup.jpeg" height="250px" width="250px" alt="Red Bean Soup">
+                <h3>Ingredients</h3>
+                <p>
+                    Red Beans: 1 cup (soaked overnight) <br>
+                    Water: 4 cups <br>
+                    Sugar: ½ cup (to taste) <br>
+                    Coconut Milk: optional for serving <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook Beans:</strong> In a pot, boil red beans in water until soft (about 1-2 hours). <br>
+                    2. <strong>Add Sugar:</strong> Stir in sugar until dissolved. <br>
+                    3. <strong>Serve:</strong> Serve warm, drizzled with coconut milk if desired.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</center>
+
+
+    <footer class="footer">
+        <p>&copy; 2024 Culinary Chronicles. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterRecipes() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category').value;
+            const recipes = document.querySelectorAll('.recipe');
+
+            recipes.forEach(recipe => {
+                const recipeName = recipe.dataset.recipe.toLowerCase();
+                const recipeCategory = recipe.dataset.category;
+
+                const matchesSearch = recipeName.includes(searchInput);
+                const matchesCategory = selectedCategory === '' || recipeCategory === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    recipe.style.display = 'block';
+                } else {
+                    recipe.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    offset:100,
+    duration:800,
+  });
+</script>
+</body>
+</html>

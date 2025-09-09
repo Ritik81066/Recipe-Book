@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Culinary Chronicles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffedcc;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #CB202D;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search-container select {
+            width: 10%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+
+        .menu-link {
+            color: #ffcc5c;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+        }
+
+        .category-title {
+            text-align: left;
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+        }
+
+        button:focus {
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .category-section {
+            display: flex;
+            padding: 10px 0;
+            scrollbar-width: none;
+            overflow-x: auto;
+        }
+
+        .recipe {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            flex: 0 0 250px;
+        }
+
+        .recipe img {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            width: 150px;
+        }
+
+        .recipe h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .recipe button {
+            background-color: #CB202D; /* Red color */
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe button:focus,
+        .recipe button:hover,
+        .recipe button:active {
+            background-color: #CB202D; /* Keep it red in all states */
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="menu.html">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="text-center my-4">Delicious French Recipes</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for lunch items..." onkeyup="filterRecipes()">
+        <select id="category" onchange="filterRecipes()">
+            <option value="">All Categories</option>
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <h2 class="category-title">Starters</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="french onion soup" data-category="veg" data-aos="zoom-in">
+                <img src="/images/french onion soup.jpeg" alt="French Onion Soup">
+                <h3>French Onion Soup</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#frenchOnionSoupModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="escargots" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/escargots.jpeg" alt="Escargots">
+                <h3>Escargots</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#escargotsModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="quiche lorraine" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/Quiche Lorraine.jpeg" alt="Quiche Lorraine">
+                <h3>Quiche Lorraine</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quicheLorraineModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="ratatouille" data-category="veg" data-aos="zoom-in">
+                <img src="/images/rattalautie.jpeg" alt="Ratatouille">
+                <h3>Ratatouille</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ratatouilleModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Main Course</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="coq au vin" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/coq au vin.jpeg" alt="Coq au Vin">
+                <h3>Coq au Vin</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#coqAuVinModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="boeuf bourguignon" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/Boeuf Bourguignon.jpeg" alt="Boeuf Bourguignon">
+                <h3>Boeuf Bourguignon</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#boeufBourguignonModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="ratatouille" data-category="veg" data-aos="zoom-in">
+                <img src="/images/rattalautie.jpeg" alt="Ratatouille">
+                <h3>Ratatouille</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ratatouilleMainModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="bouillabaisse" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/Bouillabaisse.jpeg" alt="Bouillabaisse">
+                <h3>Bouillabaisse</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bouillabaisseModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Desserts</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="crème brûlée" data-category="veg" data-aos="zoom-in">
+                <img src="/images/Crème Brûlée.jpeg" alt="Crème Brûlée">
+                <h3>Crème Brûlée</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cremeBruleeModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="tarte tatin" data-category="veg" data-aos="zoom-in">
+                <img src="/images/Tarte Tatin.jpeg" alt="Tarte Tatin">
+                <h3>Tarte Tatin</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tarteTatinModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="chocolate soufflé" data-category="veg" data-aos="zoom-in">
+                <img src="/images/Chocolate Soufflé.jpeg" alt="Chocolate Soufflé">
+                <h3>Chocolate Soufflé</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chocolateSouffleModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="madeleines" data-category="veg" data-aos="zoom-in">
+                <img src="/images/Madeleines.jpeg" alt="Madeleines">
+                <h3>Madeleines</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#madeleinesModal">View Recipe</button>
+            </div>
+        </div>
+    </div>
+    
+    
+     <!-- Modals for each recipe -->
+      <center>
+       <!-- French Onion Soup Modal -->
+<div class="modal fade" id="frenchOnionSoupModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">French Onion Soup</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/french onion soup.jpeg" height="250px" width="250px" alt="French Onion Soup">
+                <h3>Ingredients</h3>
+                <p>
+                    Onions (thinly sliced): 4 large <br>
+                    Butter: 2 tablespoons <br>
+                    Beef broth: 4 cups <br>
+                    White wine: ½ cup <br>
+                    Baguette slices (toasted): 8 <br>
+                    Gruyère cheese (grated): 1 cup <br>
+                    Salt and pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Caramelize Onions:</strong> Sauté onions in butter until golden and caramelized. <br>
+                    2. <strong>Add Broth:</strong> Stir in beef broth and white wine, and simmer for 20 minutes. <br>
+                    3. <strong>Prepare Bowls:</strong> Ladle soup into bowls, place toasted baguette slices on top, and cover with grated Gruyère. <br>
+                    4. <strong>Broil:</strong> Broil until cheese is bubbly and golden. Serve hot.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Escargots Modal -->
+<div class="modal fade" id="escargotsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Escargots</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/escargots.jpeg" height="250px" width="250px" alt="Escargots">
+                <h3>Ingredients</h3>
+                <p>
+                    Snails (canned or fresh): 12 <br>
+                    Garlic (minced): 2 cloves <br>
+                    Parsley (chopped): 2 tablespoons <br>
+                    Butter: 4 tablespoons <br>
+                    White wine: ¼ cup <br>
+                    Salt and pepper to taste <br>
+                    Baguette slices for serving <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Prepare Butter Sauce:</strong> Melt butter in a pan, add garlic and parsley, and sauté for a minute. <br>
+                    2. <strong>Add Snails:</strong> Stir in snails and white wine, cooking until heated through. <br>
+                    3. <strong>Serve:</strong> Serve hot with baguette slices to soak up the sauce.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quiche Lorraine Modal -->
+<div class="modal fade" id="quicheLorraineModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Quiche Lorraine</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/Quiche Lorraine.jpeg" height="250px" width="250px" alt="Quiche Lorraine">
+                <h3>Ingredients</h3>
+                <p>
+                    Pie crust: 1 (store-bought or homemade) <br>
+                    Bacon (chopped): 8 slices <br>
+                    Eggs: 4 <br>
+                    Heavy cream: 1 cup <br>
+                    Gruyère cheese (grated): 1 cup <br>
+                    Salt, pepper, and nutmeg to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook Bacon:</strong> Fry bacon until crispy, then drain. <br>
+                    2. <strong>Prepare Filling:</strong> Whisk eggs, cream, salt, pepper, and nutmeg together. <br>
+                    3. <strong>Assemble Quiche:</strong> Spread bacon and cheese in the pie crust, then pour the egg mixture over. <br>
+                    4. <strong>Bake:</strong> Bake at 350°F (175°C) for 30-35 minutes until set. Serve warm.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ratatouille Modal -->
+<div class="modal fade" id="ratatouilleModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Ratatouille</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/rattalautie.jpeg" height="250px" width="250px" alt="Ratatouille">
+                <h3>Ingredients</h3>
+                <p>
+                    Eggplant (sliced): 1 <br>
+                    Zucchini (sliced): 1 <br>
+                    Tomatoes (sliced): 3 <br>
+                    Bell peppers (sliced): 2 <br>
+                    Onion (sliced): 1 <br>
+                    Olive oil: 2 tablespoons <br>
+                    Herbs de Provence: 1 tablespoon <br>
+                    Salt and pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Sauté Vegetables:</strong> Sauté onions, bell peppers, and tomatoes in olive oil. <br>
+                    2. <strong>Layer:</strong> In a baking dish, layer eggplant, zucchini, and sautéed vegetables. <br>
+                    3. <strong>Bake:</strong> Drizzle with olive oil and herbs, bake at 375°F (190°C) for 30-35 minutes. <br>
+                    4. <strong>Serve:</strong> Serve hot as a main or side dish.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Coq au Vin Modal -->
+<div class="modal fade" id="coqAuVinModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Coq au Vin</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/coq au vin.jpeg" height="250px" width="250px" alt="Coq au Vin">
+                <h3>Ingredients</h3>
+                <p>
+                    Chicken (cut into pieces): 1 <br>
+                    Red wine: 2 cups <br>
+                    Bacon (chopped): 4 slices <br>
+                    Mushrooms (sliced): 1 cup <br>
+                    Garlic (minced): 3 cloves <br>
+                    Onion (chopped): 1 <br>
+                    Thyme: 1 tablespoon <br>
+                    Salt and pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Marinate Chicken:</strong> Marinate chicken in red wine, garlic, and thyme for 2 hours. <br>
+                    2. <strong>Sauté Bacon and Veggies:</strong> Cook bacon, then sauté onions, garlic, and mushrooms. <br>
+                    3. <strong>Cook Chicken:</strong> Brown chicken, then add marinade and simmer for 45 minutes. <br>
+                    4. <strong>Serve:</strong> Serve hot with mashed potatoes or crusty bread.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Boeuf Bourguignon Modal -->
+<div class="modal fade" id="boeufBourguignonModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Boeuf Bourguignon</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/Boeuf Bourguignon.jpeg" height="250px" width="250px" alt="Boeuf Bourguignon">
+                <h3>Ingredients</h3>
+                <p>
+                    Beef stew meat: 2 lbs <br>
+                    Red wine: 2 cups <br>
+                    Bacon (chopped): 4 slices <br>
+                    Carrots (sliced): 2 <br>
+                    Mushrooms (sliced): 1 cup <br>
+                    Onion (chopped): 1 <br>
+                    Garlic (minced): 3 cloves <br>
+                    Thyme: 1 tablespoon <br>
+                    Salt and pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Brown Beef:</strong> Brown the beef in a pan, then set aside. <br>
+                    2. <strong>Sauté Veggies:</strong> Cook bacon, then sauté onions, garlic, carrots, and mushrooms. <br>
+                    3. <strong>Simmer:</strong> Add beef, wine, and thyme, simmer for 2-3 hours until tender. <br>
+                    4. <strong>Serve:</strong> Serve with mashed potatoes or crusty bread.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ratatouille Modal -->
+<div class="modal fade" id="ratatouilleModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Ratatouille</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/rattalautie.jpeg" height="250px" width="250px" alt="Ratatouille">
+                <h3>Ingredients</h3>
+                <p>
+                    Eggplant (sliced): 1 <br>
+                    Zucchini (sliced): 1 <br>
+                    Tomatoes (sliced): 3 <br>
+                    Bell peppers (sliced): 2 <br>
+                    Onion (sliced): 1 <br>
+                    Olive oil: 2 tablespoons <br>
+                    Herbs de Provence: 1 tablespoon <br>
+                    Salt and pepper to taste <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Sauté Vegetables:</strong> Sauté onions, bell peppers, and tomatoes in olive oil. <br>
+                    2. <strong>Layer:</strong> In a baking dish, layer eggplant, zucchini, and sautéed vegetables. <br>
+                    3. <strong>Bake:</strong> Drizzle with olive oil and herbs, bake at 375°F (190°C) for 30-35 minutes. <br>
+                    4. <strong>Serve:</strong> Serve hot as a main or side dish.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bouillabaisse Modal -->
+<div class="modal fade" id="bouillabaisseModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Bouillabaisse</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/Bouillabaisse.jpeg" height="250px" width="250px" alt="Bouillabaisse">
+                <h3>Ingredients</h3>
+                <p>
+                    Fish fillets (white fish, cod, or sea bass): 1 lb <br>
+                    Shrimp: ½ lb <br>
+                    Mussels: ½ lb <br>
+                    Onion (chopped): 1 <br>
+                    Garlic (minced): 3 cloves <br>
+                    Tomatoes (chopped): 2 <br>
+                    Fennel: 1 bulb (sliced) <br>
+                    Saffron: a pinch <br>
+                    Fish stock: 4 cups <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Sauté Aromatics:</strong> Sauté onion, garlic, and fennel in olive oil. <br>
+                    2. <strong>Add Stock and Saffron:</strong> Pour in fish stock, add saffron and tomatoes, simmer for 15 minutes. <br>
+                    3. <strong>Add Seafood:</strong> Add fish, shrimp, and mussels, cook until seafood is done (5-7 minutes). <br>
+                    4. <strong>Serve:</strong> Serve hot with crusty bread and rouille sauce.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Crème Brûlée Modal -->
+<div class="modal fade" id="cremeBruleeModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Crème Brûlée</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/Crème Brûlée.jpeg" height="250px" width="250px" alt="Crème Brûlée">
+                <h3>Ingredients</h3>
+                <p>
+                    Heavy cream: 2 cups <br>
+                    Vanilla bean: 1 <br>
+                    Egg yolks: 5 <br>
+                    Sugar: ½ cup <br>
+                    Extra sugar for caramelizing: 2 tablespoons <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Heat Cream:</strong> Heat cream and vanilla bean in a saucepan until steaming, then remove from heat. <br>
+                    2. <strong>Mix Yolks and Sugar:</strong> Whisk egg yolks and sugar, then slowly pour in the cream. <br>
+                    3. <strong>Bake:</strong> Pour mixture into ramekins and bake in a water bath at 325°F (160°C) for 40 minutes. <br>
+                    4. <strong>Caramelize Sugar:</strong> Chill, then sprinkle sugar on top and torch until caramelized.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tarte Tatin Modal -->
+<div class="modal fade" id="tarteTatinModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Tarte Tatin</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Tarte Tatin.jpeg" height="250px" width="250px" alt="Tarte Tatin">
+                <h3>Ingredients</h3>
+                <p>
+                    Apples (peeled and sliced): 6 <br>
+                    Puff pastry: 1 sheet <br>
+                    Sugar: ½ cup <br>
+                    Butter: 4 tablespoons <br>
+                    Lemon juice: 1 tablespoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Cook Apples:</strong> Cook apples with sugar, butter, and lemon juice until caramelized. <br>
+                    2. <strong>Prepare Pastry:</strong> Place apples in a baking dish, cover with puff pastry. <br>
+                    3. <strong>Bake:</strong> Bake at 375°F (190°C) for 25-30 minutes until golden. <br>
+                    4. <strong>Serve:</strong> Invert onto a plate and serve warm.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chocolate Soufflé Modal -->
+<div class="modal fade" id="chocolateSouffleModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Chocolate Soufflé</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Chocolate Soufflé.jpeg" height="250px" width="250px" alt="Chocolate Soufflé">
+                <h3>Ingredients</h3>
+                <p>
+                    Dark chocolate (chopped): 6 oz <br>
+                    Butter: 2 tablespoons <br>
+                    Eggs (separated): 4 <br>
+                    Sugar: ¼ cup <br>
+                    Cream of tartar: ¼ teaspoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Melt Chocolate:</strong> Melt chocolate and butter in a double boiler. <br>
+                    2. <strong>Whisk Yolks and Sugar:</strong> Beat egg yolks and sugar, then mix in chocolate. <br>
+                    3. <strong>Whisk Whites:</strong> Beat egg whites with cream of tartar until stiff peaks form. <br>
+                    4. <strong>Bake:</strong> Gently fold whites into chocolate mixture and bake at 375°F (190°C) for 12-15 minutes.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Madeleines Modal -->
+<div class="modal fade" id="madeleinesModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Madeleines</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/Madeleines.jpeg" height="250px" width="250px" alt="Madeleines">
+                <h3>Ingredients</h3>
+                <p>
+                    Butter (melted): ½ cup <br>
+                    Sugar: ⅔ cup <br>
+                    Eggs: 2 <br>
+                    Flour: 1 cup <br>
+                    Baking powder: 1 teaspoon <br>
+                    Vanilla extract: 1 teaspoon <br>
+                </p>
+                <h3>Recipe</h3>
+                <p>
+                    1. <strong>Whisk Eggs and Sugar:</strong> Beat eggs and sugar until light and fluffy. <br>
+                    2. <strong>Mix in Flour and Butter:</strong> Fold in flour, baking powder, and melted butter. <br>
+                    3. <strong>Bake:</strong> Spoon batter into a madeleine mold and bake at 375°F (190°C) for 10-12 minutes. <br>
+                    4. <strong>Serve:</strong> Dust with powdered sugar and serve.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</center>
+
+
+    <footer class="footer">
+        <p>&copy; 2024 Culinary Chronicles. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterRecipes() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category').value;
+            const recipes = document.querySelectorAll('.recipe');
+
+            recipes.forEach(recipe => {
+                const recipeName = recipe.dataset.recipe.toLowerCase();
+                const recipeCategory = recipe.dataset.category;
+
+                const matchesSearch = recipeName.includes(searchInput);
+                const matchesCategory = selectedCategory === '' || recipeCategory === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    recipe.style.display = 'block';
+                } else {
+                    recipe.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    offset:100,
+    duration:800,
+  });
+</script>
+</body>
+</html>

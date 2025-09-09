@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Culinary Chronicles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome for social media icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffedcc;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #CB202D;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search-container select {
+            width: 10%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            color: #ffcc5c !important;
+            cursor: pointer;
+        }
+
+        .menu-link {
+            color: #ffcc5c;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+        }
+
+        .category-title {
+            text-align: left;
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+        }
+
+        button:focus {
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .category-section {
+            display: flex;
+            padding: 10px 0;
+            scrollbar-width: none;
+            overflow-x: auto;
+        }
+
+        .recipe {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            flex: 0 0 250px;
+        }
+
+        .recipe img {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            width: 150px;
+        }
+
+        .recipe h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .recipe button {
+            background-color: #CB202D; /* Red color */
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe button:focus,
+        .recipe button:hover,
+        .recipe button:active {
+            background-color: #CB202D; /* Keep it red in all states */
+            outline: none; /* Removes the focus outline */
+            box-shadow: none; /* Removes any box shadow if Bootstrap applies it */
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Culinary Chronicles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="menu.html">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="text-center my-4">Delicious Italian Recipes</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for lunch items..." onkeyup="filterRecipes()">
+        <select id="category" onchange="filterRecipes()">
+            <option value="">All Categories</option>
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <h2 class="category-title">Starters</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="bruschetta" data-category="veg" data-aos="zoom-in">
+                <img src="/images/bruschetta.jpeg" alt="Bruschetta">
+                <h3>Bruschetta</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bruschettaModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="caprese salad" data-category="veg" data-aos="zoom-in">
+                <img src="/images/caprese salad.jpeg" alt="Caprese Salad">
+                <h3>Caprese Salad</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#capreseModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="calamari" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/calamari.jpeg" alt="Calamari">
+                <h3>Calamari</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calamariModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="stuffed mushrooms" data-category="veg" data-aos="zoom-in">
+                <img src="/images/stuffed mashroom.jpeg" alt="Stuffed Mushrooms">
+                <h3>Stuffed Mushrooms</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#stuffedMushroomsModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Main Course</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="lasagna" data-category="veg" data-aos="zoom-in">
+                <img src="/images/lasagna.jpeg" alt="Lasagna">
+                <h3>Lasagna</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lasagnaModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="chicken parmigiana" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/chicken parmigiana.jpeg" alt="Chicken Parmigiana">
+                <h3>Parmigiana</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#parmigianaModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="spaghetti bolognese" data-category="non-veg" data-aos="zoom-in">
+                <img src="/images/spaghetti.jpeg" alt="Spaghetti Bolognese">
+                <h3>Bolognese</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bologneseModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="pesto pasta" data-category="veg" data-aos="zoom-in">
+                <img src="/images/pesto pasta.jpeg" alt="Pesto Pasta">
+                <h3>Pesto Pasta</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pestoPastaModal">View Recipe</button>
+            </div>
+        </div>
+    
+        <h2 class="category-title">Desserts</h2>
+        <div class="category-section">
+            <div class="recipe" data-recipe="tiramisu" data-category="veg" data-aos="zoom-in">
+                <img src="/images/tiramisu.jpeg" alt="Tiramisu">
+                <h3>Tiramisu</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tiramisuModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="panna cotta" data-category="veg" data-aos="zoom-in">
+                <img src="/images/panna cotta.jpeg" alt="Panna Cotta">
+                <h3>Panna Cotta</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pannaCottaModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="cannoli" data-category="veg" data-aos="zoom-in">
+                <img src="/images/cannoli.jpeg" alt="Cannoli">
+                <h3>Cannoli</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cannoliModal">View Recipe</button>
+            </div>
+            <div class="recipe" data-recipe="gelato" data-category="veg" data-aos="zoom-in">
+                <img src="/images/geleto.jpeg" alt="Gelato">
+                <h3>Gelato</h3>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#gelatoModal">View Recipe</button>
+            </div>
+        </div>
+    </div>    
+    
+     <!-- Modals for each recipe -->
+       <!-- Spring Rolls Modal -->
+        <center>
+            <div class="modal fade" id="bruschettaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Bruschetta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="/images/bruschetta.jpeg" height="250px" width="250px" alt="Bruschetta">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Baguette: 1 <br>
+                                Tomatoes (diced): 2 cups <br>
+                                Fresh basil (chopped): ½ cup <br>
+                                Olive oil: 3 tablespoons <br>
+                                Garlic (minced): 2 cloves <br>
+                                Salt and pepper to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Prepare Topping:</strong> Mix tomatoes, basil, olive oil, garlic, salt, and pepper. <br>
+                                2. <strong>Toast Bread:</strong> Slice baguette, toast until golden. <br>
+                                3. <strong>Assemble:</strong> Top toasted bread with tomato mixture. <br>
+                                4. <strong>Serve:</strong> Serve immediately as an appetizer.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="capreseModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Caprese Salad</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/caprese salad.jpeg" height="250px" width="250px" alt="Caprese Salad">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Fresh mozzarella: 250g <br>
+                                Tomatoes (sliced): 2 large <br>
+                                Fresh basil leaves: 1 bunch <br>
+                                Olive oil: 2 tablespoons <br>
+                                Balsamic vinegar: 1 tablespoon <br>
+                                Salt and pepper to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Layer:</strong> Alternate layers of mozzarella, tomatoes, and basil. <br>
+                                2. <strong>Dress:</strong> Drizzle with olive oil and balsamic vinegar. <br>
+                                3. <strong>Season:</strong> Sprinkle with salt and pepper. <br>
+                                4. <strong>Serve:</strong> Serve immediately as a refreshing salad.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="calamariModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Calamari</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/calamari.jpeg" height="250px" width="250px" alt="Calamari">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Fresh calamari (cleaned and sliced): 500g <br>
+                                Flour: 1 cup <br>
+                                Cornstarch: ½ cup <br>
+                                Salt and pepper to taste <br>
+                                Oil for frying <br>
+                                Lemon wedges for serving <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Mix Breading:</strong> Combine flour, cornstarch, salt, and pepper. <br>
+                                2. <strong>Coat Calamari:</strong> Dredge calamari in the mixture. <br>
+                                3. <strong>Fry:</strong> Deep fry in hot oil until golden brown. <br>
+                                4. <strong>Serve:</strong> Serve hot with lemon wedges.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="stuffedMushroomsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Stuffed Mushrooms</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/stuffed mashroom.jpeg" height="250px" width="250px" alt="Stuffed Mushrooms">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Button mushrooms: 12 <br>
+                                Cream cheese: 200g <br>
+                                Garlic (minced): 2 cloves <br>
+                                Parmesan cheese (grated): 50g <br>
+                                Fresh parsley (chopped): 2 tablespoons <br>
+                                Salt and pepper to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Preheat Oven:</strong> Preheat to 180°C (350°F). <br>
+                                2. <strong>Prepare Filling:</strong> Mix cream cheese, garlic, Parmesan, parsley, salt, and pepper. <br>
+                                3. <strong>Stuff Mushrooms:</strong> Fill each mushroom cap with the mixture. <br>
+                                4. <strong>Bake:</strong> Bake for 15-20 minutes until golden.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="bologneseModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Bolognese</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/spaghetti.jpeg" height="250px" width="250px" alt="Bolognese">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Ground beef: 500g <br>
+                                Onion (chopped): 1 <br>
+                                Carrots (chopped): 1 <br>
+                                Celery (chopped): 1 stalk <br>
+                                Tomato sauce: 400g <br>
+                                Olive oil: 2 tablespoons <br>
+                                Salt and pepper to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Sauté Veggies:</strong> Heat oil and sauté onion, carrots, and celery until soft. <br>
+                                2. <strong>Add Meat:</strong> Add ground beef and cook until browned. <br>
+                                3. <strong>Simmer:</strong> Add tomato sauce, salt, and pepper; simmer for 30 minutes. <br>
+                                4. <strong>Serve:</strong> Serve over pasta.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="pestoPastaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Pesto Pasta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/pesto pasta.jpeg" height="250px" width="250px" alt="Pesto Pasta">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Pasta (your choice): 250g <br>
+                                Fresh basil: 2 cups <br>
+                                Pine nuts: ¼ cup <br>
+                                Olive oil: ½ cup <br>
+                                Parmesan cheese (grated): 50g <br>
+                                Garlic (minced): 2 cloves <br>
+                                Salt to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Cook Pasta:</strong> Cook pasta according to package instructions. <br>
+                                2. <strong>Make Pesto:</strong> Blend basil, pine nuts, olive oil, Parmesan, garlic, and salt until smooth. <br>
+                                3. <strong>Toss:</strong> Toss cooked pasta with pesto. <br>
+                                4. <strong>Serve:</strong> Serve immediately, garnished with more Parmesan.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="tiramisuModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Tiramisu</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/tiramisu.jpeg" height="250px" width="250px" alt="Tiramisu">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Mascarpone cheese: 250g <br>
+                                Coffee (strong brewed): 1 cup <br>
+                                Ladyfinger cookies: 200g <br>
+                                Cocoa powder: for dusting <br>
+                                Sugar: 100g <br>
+                                Eggs: 2 <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Prepare Mixture:</strong> Whisk egg yolks and sugar, then fold in mascarpone. <br>
+                                2. <strong>Dip Cookies:</strong> Quickly dip ladyfingers in coffee. <br>
+                                3. <strong>Layer:</strong> Layer cookies and mascarpone mixture in a dish. <br>
+                                4. <strong>Chill:</strong> Refrigerate for at least 4 hours, dust with cocoa before serving.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="modal fade" id="pannaCottaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Panna Cotta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/panna cotta.jpeg" height="250px" width="250px" alt="Panna Cotta">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Heavy cream: 500ml <br>
+                                Sugar: 100g <br>
+                                Gelatin: 2 teaspoons <br>
+                                Vanilla extract: 1 teaspoon <br>
+                                Fresh berries for garnish <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Heat Cream:</strong> In a saucepan, heat cream and sugar until dissolved. <br>
+                                2. <strong>Add Gelatin:</strong> Dissolve gelatin in cold water, then stir into the cream. <br>
+                                3. <strong>Pour:</strong> Pour mixture into molds and refrigerate until set. <br>
+                                4. <strong>Serve:</strong> Serve chilled, garnished with fresh berries.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            <div class="modal fade" id="cannoliModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Cannoli</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/cannoli.jpeg" height="250px" width="250px" alt="Cannoli">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Cannoli shells: 12 <br>
+                                Ricotta cheese: 400g <br>
+                                Powdered sugar: 100g <br>
+                                Vanilla extract: 1 teaspoon <br>
+                                Mini chocolate chips: 50g <br>
+                                Chopped pistachios for garnish <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Prepare Filling:</strong> Mix ricotta, powdered sugar, and vanilla until smooth. <br>
+                                2. <strong>Fill Shells:</strong> Pipe the filling into cannoli shells. <br>
+                                3. <strong>Garnish:</strong> Dip ends in chocolate chips and pistachios. <br>
+                                4. <strong>Serve:</strong> Serve immediately for best texture.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="gelatoModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Gelato</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/geleto.jpeg" height="250px" width="250px" alt="Gelato">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Milk: 500ml <br>
+                                Heavy cream: 250ml <br>
+                                Sugar: 100g <br>
+                                Egg yolks: 4 <br>
+                                Vanilla extract: 1 teaspoon <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Heat Mixture:</strong> In a saucepan, heat milk, cream, and half of the sugar until warm. <br>
+                                2. <strong>Whisk Yolks:</strong> In a bowl, whisk egg yolks with remaining sugar until pale. <br>
+                                3. <strong>Combine:</strong> Gradually whisk warm mixture into yolks, then return to saucepan. <br>
+                                4. <strong>Chill:</strong> Cool and churn in an ice cream maker until creamy.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="lasagnaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Lasagna</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/lasagna.jpeg" height="250px" width="250px" alt="Lasagna">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Lasagna noodles: 12 sheets <br>
+                                Ground beef: 500g <br>
+                                Tomato sauce: 700g <br>
+                                Ricotta cheese: 400g <br>
+                                Mozzarella cheese (shredded): 200g <br>
+                                Parmesan cheese (grated): 100g <br>
+                                Onion (chopped): 1 <br>
+                                Garlic (minced): 2 cloves <br>
+                                Olive oil: 2 tablespoons <br>
+                                Salt and pepper to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Preheat Oven:</strong> Preheat to 180°C (350°F). <br>
+                                2. <strong>Sauté Beef:</strong> In a pan, heat olive oil, sauté onion and garlic, then add ground beef; cook until browned. <br>
+                                3. <strong>Layer:</strong> In a baking dish, layer noodles, meat sauce, ricotta, and mozzarella. Repeat layers. Top with Parmesan. <br>
+                                4. <strong>Bake:</strong> Bake for 30-35 minutes until cheese is bubbly. Let cool before slicing.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="parmigianaModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Parmigiana</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/chicken parmigiana.jpeg" height="250px" width="250px" alt="Parmigiana">
+                            <h3>Ingredients</h3>
+                            <p>
+                                Eggplant (sliced): 2 large <br>
+                                Tomato sauce: 500g <br>
+                                Mozzarella cheese (sliced): 200g <br>
+                                Parmesan cheese (grated): 100g <br>
+                                Olive oil: for frying <br>
+                                Fresh basil leaves: for garnish <br>
+                                Salt and pepper to taste <br>
+                            </p>
+                            <h3>Recipe</h3>
+                            <p>
+                                1. <strong>Prepare Eggplant:</strong> Salt eggplant slices and let sit for 30 minutes to draw out moisture. Rinse and pat dry. <br>
+                                2. <strong>Fry:</strong> Heat olive oil in a pan and fry eggplant slices until golden brown. <br>
+                                3. <strong>Layer:</strong> In a baking dish, layer eggplant, tomato sauce, mozzarella, and Parmesan. Repeat layers. <br>
+                                4. <strong>Bake:</strong> Bake at 180°C (350°F) for 25-30 minutes until bubbly. Garnish with basil before serving.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+</center>
+
+    <footer class="footer">
+        <p>&copy; 2024 Culinary Chronicles. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterRecipes() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category').value;
+            const recipes = document.querySelectorAll('.recipe');
+
+            recipes.forEach(recipe => {
+                const recipeName = recipe.dataset.recipe.toLowerCase();
+                const recipeCategory = recipe.dataset.category;
+
+                const matchesSearch = recipeName.includes(searchInput);
+                const matchesCategory = selectedCategory === '' || recipeCategory === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    recipe.style.display = 'block';
+                } else {
+                    recipe.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    offset:100,
+    duration:800,
+  });
+</script>
+</body>
+</html>
